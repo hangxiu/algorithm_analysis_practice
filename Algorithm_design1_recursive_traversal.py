@@ -1,5 +1,22 @@
 import numpy as np
 
+class CPermutation:
+    def __init__(self, array, m, result, sum_result, show):
+        self.array = array
+        self.show = show
+        self.m = m
+        self.result = result
+        Array_index_from_small_to_big(array, 0, show, m, m, len(array), sum_result)
+        self.sum_result = sum_result
+        self.num = 0
+    def next(self):
+        if self.num < len(self.sum_result):
+            self.num += 1
+            return True
+        else:
+            return False
+
+      
 hash_map = [x - x for x in np.arange(0, 6)]
 # 实现数组的字典序
 def Front_three_number_Dictionary_suqence(array, front_n, show):
@@ -43,7 +60,7 @@ def All_number_Dictionary_suqence(array, index, len_array, k, num):
 
 
 # 实现数组的排序 从小到大排序
-def Array_index_from_small_to_big(array, start, result, count, num, arr_len):
+def Array_index_from_small_to_big(array, start, result, count, num, arr_len, sum_result):
     i = start
     while i < arr_len + 1 - count:
         result[count - 1] = i
@@ -52,10 +69,11 @@ def Array_index_from_small_to_big(array, start, result, count, num, arr_len):
             for j, data in enumerate(result):
                 print_re.append(array[result[j]])
             print_re.reverse()
-            print(print_re)
+            # print(print_re)
+            sum_result.append(print_re)
         else:
             Array_index_from_small_to_big(array, i + 1, result, count - 1, num,
-                                          arr_len)
+                                          arr_len, sum_result)
         i += 1
 
 
@@ -112,6 +130,26 @@ if __name__ == "__main__":
     array = np.arange(0, 5)
     n = 3
     show = [x - x for x in range(0, n)]
+    # test0 测试面向对象的封装过程
+    instance_example = CPermutation(array, n, [], [], show)
+    # print(instance_example.sum_result)
+    while True:
+        if instance_example.next():
+           print(instance_example.sum_result[instance_example.num - 1])
+        else:
+            break
+    # out_put
+#     [0, 1, 2]
+# [0, 1, 3]
+# [0, 1, 4]
+# [0, 2, 3]
+# [0, 2, 4]
+# [0, 3, 4]
+# [1, 2, 3]
+# [1, 2, 4]
+# [1, 3, 4]
+# [2, 3, 4]
+
     # test1 按系数从小到大排序
     # Array_index_from_small_to_big(array, 0, show, n, n, len(array))
 #     Out_put
