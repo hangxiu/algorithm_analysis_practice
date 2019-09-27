@@ -18,6 +18,7 @@ def Polynomial_derivation(x):
 #     print("test 为：%g" %Polynomial(x1))
     # root 为：-0.143876
     # test 为：-7.4829e-14
+    # 真实解为： -2.3115909，  -0.14394663
 
 
 #   二分法求方程的解
@@ -36,5 +37,23 @@ if __name__ == "__main__":
             x0 = mid
     print("root 为：%g" %((x1+x0) / 2))
     print("test 为：%g" %Polynomial((x0+x1) / 2))
+
+    x0 = -9
+    x1 = -1
+    root = 3
+    while abs(x0 - x1) >= 1e-11:
+        mid = (x0 + x1) / 2
+        if Polynomial(mid) == 0:
+            root = mid
+            break
+        elif Polynomial(x0) * Polynomial(mid) < 0:
+            x1 = mid
+        elif Polynomial(x1) * Polynomial(mid) < 0:
+            x0 = mid
+    print("root 为：%g" %((x1+x0) / 2))
+    print("test 为：%g" %Polynomial((x0+x1) / 2))
+    
     # root 为：-0.143876
     # test 为：-7.07767e-12
+    # root 为：-2.64421
+    # test 为：8.46376e-10
