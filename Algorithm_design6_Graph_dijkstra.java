@@ -222,15 +222,28 @@ public class MatrixUDG {
         }
         System.out.printf("\n");
     }
-
+    private double readDouble(){
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextDouble();
+    }
     /*
      * 打印矩阵队列图
      */
+   
     public void print() {
         System.out.printf("Martix Graph:\n");
+        for(int i = 0; i< mVexs.length;i++)
+            System.out.printf("\t%c", mVexs[i]);
+        System.out.println();
         for (int i = 0; i < mVexs.length; i++) {
-            for (int j = 0; j < mVexs.length; j++)
-                System.out.printf("%10d ", mMatrix[i][j]);
+            System.out.printf("%c\t", mVexs[i]);
+            for (int j = 0; j < mVexs.length; j++){
+                if(mMatrix[i][j] != INF)
+                    System.out.printf("%.2d\t", mMatrix[i][j]);
+                else{
+                    System.out.printf("inf\t");
+                }
+            }
             System.out.printf("\n");
         }
     }
